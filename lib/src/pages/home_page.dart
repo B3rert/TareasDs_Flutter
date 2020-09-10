@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:front_tareasds/src/pages/active_task_page.dart';
 import 'package:front_tareasds/src/pages/list_task_page.dart';
 import 'package:front_tareasds/src/pages/new_task_page.dart';
 import 'package:front_tareasds/src/pages/settings_page.dart';
-import 'package:front_tareasds/src/pages/task_closed_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,10 +30,8 @@ class _HomePage extends State<HomePage> {
   int indexTap = 0;
 
   final List<Widget> widgetsChildren = [
-    ListPage(),
-    ActiveTaskPage(),
+    ListTaskPage(),
     NewTaskPage(),
-    TaskClosedpage(),
     SettingsPage(),
   ];
 
@@ -50,9 +46,8 @@ class _HomePage extends State<HomePage> {
     return Scaffold(
       body: widgetsChildren[indexTap],
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: naranja,
-        ),
+        data: Theme.of(context)
+            .copyWith(canvasColor: naranja, primaryColor: azul),
         child: BottomNavigationBar(
           onTap: onTapped,
           currentIndex: indexTap,
@@ -60,62 +55,24 @@ class _HomePage extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.clear_all,
-                color: azul,
               ),
               title: Text(
-                "Tareas",
-                style: TextStyle(
-                  color: azul,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.access_time,
-                color: azul,
-              ),
-              title: Text(
-                "Activas",
-                style: TextStyle(
-                  color: azul,
-                ),
+                "Tickets",
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.add_circle_outline,
-                color: azul,
               ),
               title: Text(
-                "Nueva Tarea",
-                style: TextStyle(
-                  color: azul,
-                ),
+                "Nuevo Ticket",
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.check,
-                color: azul,
+                Icons.phone_forwarded,
               ),
-              title: Text(
-                "Cerradas",
-                style: TextStyle(
-                  color: azul,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.perm_identity,
-                color: azul,
-              ),
-              title: Text(
-                "Usuario",
-                style: TextStyle(
-                  color: azul,
-                ),
-              ),
+              title: Text("Soporte"),
             )
           ],
         ),

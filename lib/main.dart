@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/pages/home_page.dart';
 import 'package:front_tareasds/src/pages/login_page.dart';
+import 'package:front_tareasds/src/pages/view_tasks.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,8 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => LoginPage(), //Ruta a login_page
         "/homePage": (context) => HomePage(),
-        //'/': (context) => FirstScreen(), //asignacion de ruta1
-        //'/second': (context) => MainTrips(), //asignacio de ruta2
+        "/viewTask": (context) => ViewTaskPage(),
       },
       initialRoute: '/',
     );

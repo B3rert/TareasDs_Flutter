@@ -99,17 +99,4 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushNamed(context, "/homePage");
     });
   }
-
-  Widget _crearSwitch() {
-    return SwitchListTile(
-      title: Text("Recordar mis datos"),
-      value: false,
-      onChanged: (value) {
-        setState(() {
-          //value es el valor del switch
-        });
-      },
-      activeColor: Colors.purple,
-    );
-  }
 }
