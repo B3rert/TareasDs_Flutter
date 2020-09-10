@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget bottonLogin() {
     return RaisedButton(
       child: Text("Iniciar sesión"),
-      color: naranja,
+      color: azul,
       onPressed: _iniciarSesion,
       textColor: Colors.white,
       shape: StadiumBorder(),

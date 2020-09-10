@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_tareasds/src/pages/list_page.dart';
 
 Map<int, Color> color = {
   50: Color.fromRGBO(136, 14, 79, .1),
@@ -21,12 +22,12 @@ class ViewTaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: naranja,
+          color: azul,
         ),
         backgroundColor: Colors.white,
         title: Text(
           "Tareas",
-          style: TextStyle(color: naranja),
+          style: TextStyle(color: azul),
         ),
         centerTitle: true,
       ),

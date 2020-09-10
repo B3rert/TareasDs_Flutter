@@ -19,13 +19,14 @@ Map<int, Color> color = {
 };
 
 MaterialColor naranja = MaterialColor(0xFFDF9623, color);
+MaterialColor azul = MaterialColor(0xFF124994, color);
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: naranja,
+        primarySwatch: azul,
       ),
       debugShowCheckedModeBanner: false,
       title: 'TareasDS',

@@ -35,7 +35,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         backgroundColor: Colors.white,
         title: Text(
           _tituloBar,
-          style: TextStyle(color: naranja),
+          style: TextStyle(color: azul),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -45,7 +45,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
           onPressed: () {},
         ),
         iconTheme: IconThemeData(
-          color: naranja,
+          color: azul,
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
@@ -57,7 +57,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
                   value: choice,
                   child: Text(
                     choice,
-                    style: TextStyle(color: naranja),
+                    style: TextStyle(color: azul),
                   ),
                 );
               }).toList();
@@ -108,7 +108,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         ),
         trailing: Icon(
           Icons.keyboard_arrow_right,
-          color: naranja,
+          color: azul,
         ),
         subtitle: Padding(
           padding: const EdgeInsets.only(left: 20.0),
