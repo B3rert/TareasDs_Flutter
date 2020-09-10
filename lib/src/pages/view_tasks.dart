@@ -22,12 +22,12 @@ class ViewTaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: azul,
+          color: Colors.white,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: azul,
         title: Text(
           "Tareas",
-          style: TextStyle(color: azul),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),

@@ -32,10 +32,10 @@ class _ListTaskPageState extends State<ListTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: azul,
         title: Text(
           _tituloBar,
-          style: TextStyle(color: azul),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -45,7 +45,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
           onPressed: () {},
         ),
         iconTheme: IconThemeData(
-          color: azul,
+          color: Colors.white,
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
