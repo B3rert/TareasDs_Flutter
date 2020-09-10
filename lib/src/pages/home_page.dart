@@ -47,7 +47,7 @@ class _HomePage extends State<HomePage> {
       body: widgetsChildren[indexTap],
       bottomNavigationBar: Theme(
         data: Theme.of(context)
-            .copyWith(canvasColor: naranja, primaryColor: azul),
+            .copyWith(canvasColor: Colors.white, primaryColor: naranja),
         child: BottomNavigationBar(
           onTap: onTapped,
           currentIndex: indexTap,

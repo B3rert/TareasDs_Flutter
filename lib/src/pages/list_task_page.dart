@@ -32,9 +32,10 @@ class _ListTaskPageState extends State<ListTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           _tituloBar,
-          style: TextStyle(color: Colors.black54),
+          style: TextStyle(color: naranja),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -44,11 +45,11 @@ class _ListTaskPageState extends State<ListTaskPage> {
           onPressed: () {},
         ),
         iconTheme: IconThemeData(
-          color: Colors.black54,
+          color: naranja,
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
-            color: naranjaPalido,
+            color: Colors.white,
             onSelected: choiceAction,
             itemBuilder: (BuildContext context) {
               return Constants.choices.map((String choice) {
@@ -56,7 +57,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
                   value: choice,
                   child: Text(
                     choice,
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: naranja),
                   ),
                 );
               }).toList();
@@ -107,7 +108,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         ),
         trailing: Icon(
           Icons.keyboard_arrow_right,
-          color: azul,
+          color: naranja,
         ),
         subtitle: Padding(
           padding: const EdgeInsets.only(left: 20.0),
