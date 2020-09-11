@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+bool brushedTeeth = false; //Estado para en checkbox
+bool enableFeature = false; //Estado para en checkbox
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -24,7 +27,15 @@ MaterialColor azul = MaterialColor(0xFF124994, color);
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+      decoration: BoxDecoration(
+       image: DecorationImage(
+         image:AssetImage ('assets/images/background_login.jpg'),
+         fit: BoxFit.cover
+        ),
+      ),
+     child: Scaffold(
+      backgroundColor: Colors.transparent,
       body: Center(
         child: Column(
           children: [
@@ -37,9 +48,11 @@ class _LoginPageState extends State<LoginPage> {
             inputUsuario(),
             inputClave(),
             bottonLogin(),
+            _crearSwitch()
           ],
         ),
       ),
+    )
     );
   }
 
@@ -50,7 +63,6 @@ class _LoginPageState extends State<LoginPage> {
         right: 20.0,
       ),
       child: TextField(
-        //style: TextStyle(color: Colors.red),
         decoration: InputDecoration(
           hintText: "Usuario",
           suffixIcon: Icon(Icons.person),
@@ -66,10 +78,10 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget inputClave() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(25.0),
       child: TextField(
         obscureText: true,
-        //style: TextStyle(color: Colors.red),
+        //style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
           hintText: "Contraseña",
           suffixIcon: Icon(Icons.lock),
@@ -84,12 +96,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget bottonLogin() {
-    return RaisedButton(
-      child: Text("Iniciar sesión"),
-      color: naranja,
-      onPressed: _iniciarSesion,
-      textColor: Colors.white,
-      shape: StadiumBorder(),
+    return Container(
+      padding: const EdgeInsets.only(top: 0),
+      height: 55.0,
+      width: 360.0,
+      child: new RaisedButton(
+        child: new Text('Iniciar Sesión'),
+        onPressed: _iniciarSesion,
+        textColor: Colors.white,
+        color: naranja,
+        shape: StadiumBorder(),
+      ),
     );
   }
 
@@ -99,4 +116,30 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushNamed(context, "/homePage");
     });
   }
+<<<<<<< HEAD
+=======
+
+  Widget _crearSwitch() {
+    return Container(
+    padding: const EdgeInsets.only(top: 55),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Switch(
+          activeColor: azul,
+          inactiveThumbColor: naranja,
+          value: brushedTeeth,
+          onChanged: (checked) {
+            setState(() {
+              brushedTeeth = checked;
+            });
+          },
+        ),
+        Text('Recordar mis datos', style: Theme.of(context).textTheme.subtitle1),
+      ],
+    )
+    );
+  }
+>>>>>>> segunda_parte
 }
