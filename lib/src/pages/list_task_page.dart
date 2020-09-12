@@ -33,21 +33,21 @@ class _ListTaskPageState extends State<ListTaskPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: azul,
+        leading: Container(),
         title: Text(
           _tituloBar,
           style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.search,
-          ),
-          onPressed: () {},
         ),
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+            ),
+            onPressed: () {},
+          ),
           PopupMenuButton<String>(
             color: Colors.white,
             onSelected: choiceAction,
@@ -70,14 +70,17 @@ class _ListTaskPageState extends State<ListTaskPage> {
   }
 
   Widget _lista() {
-    return FutureBuilder(
-      future: tareasProvider.cargarData(),
-      initialData: [],
-      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-        return ListView(
-          children: _listaitems(snapshot.data, context),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: FutureBuilder(
+        future: tareasProvider.cargarData(),
+        initialData: [],
+        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+          return ListView(
+            children: _listaitems(snapshot.data, context),
+          );
+        },
+      ),
     );
   }
 
@@ -88,21 +91,27 @@ class _ListTaskPageState extends State<ListTaskPage> {
       final widgetTemp = ListTile(
         title: Padding(
           padding: const EdgeInsets.only(left: 20.0),
-          child: Row(
+          child: Column(
             children: [
-              Text(
-                element['ID_tarea'],
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  element['Titulo'],
+                ),
               ),
-              Text(
-                " - ",
+              Row(
+                children: [
+                  Text(
+                    element['ID_tarea'],
+                  ),
+                  Text(
+                    " - ",
+                  ),
+                  Text(
+                    element['Estado'],
+                  ),
+                ],
               ),
-              Text(
-                element['Estado'],
-              ),
-              Text(
-                " - ",
-              ),
-              Text(element['Fecha']),
             ],
           ),
         ),
@@ -113,7 +122,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         subtitle: Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
-            element['Titulo'],
+            element['Fecha'],
           ),
         ),
         onTap: () {
