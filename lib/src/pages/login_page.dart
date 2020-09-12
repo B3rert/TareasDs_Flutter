@@ -30,27 +30,29 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       decoration: BoxDecoration(
        image: DecorationImage(
-         image:AssetImage ('assets/images/background_login.jpg'),
+         image:AssetImage ('assets/images/background_login_grey.jpg'),
          fit: BoxFit.cover
         ),
       ),
      child: Scaffold(
       backgroundColor: Colors.transparent,
-      body: Center(
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/logo_demosoft.png',
-              width: 250.0,
-              //'assets/images/logo-here.png',
-              height: 350,
-            ),
-            inputUsuario(),
-            inputClave(),
-            bottonLogin(),
-            _crearSwitch()
-          ],
-        ),
+      body: ListView(
+              children:[ Center(
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/images/logo_demosoft.png',
+                width: 250.0,
+                //'assets/images/logo-here.png',
+                height: 350,
+              ),
+              inputUsuario(),
+              inputClave(),
+              bottonLogin(),
+              _crearSwitch()
+            ],
+          ),
+        ),],
       ),
     )
     );
@@ -96,16 +98,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget bottonLogin() {
-    return Container(
-      padding: const EdgeInsets.only(top: 0),
-      height: 55.0,
-      width: 360.0,
-      child: new RaisedButton(
-        child: new Text('Iniciar Sesión'),
-        onPressed: _iniciarSesion,
-        textColor: Colors.white,
-        color: naranja,
-        shape: StadiumBorder(),
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0,
+        right: 20.0,),
+      child: Container(
+        height: 50.0,
+        width: 365.0,
+        child: new RaisedButton(
+          child: new Text('Iniciar Sesión'),
+          onPressed: _iniciarSesion,
+          textColor: Colors.white,
+          color: azul,
+          shape: StadiumBorder(),
+        ),
       ),
     );
   }
@@ -116,19 +121,18 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushNamed(context, "/homePage");
     });
   }
-<<<<<<< HEAD
-=======
 
   Widget _crearSwitch() {
     return Container(
-    padding: const EdgeInsets.only(top: 55),
+    padding: const EdgeInsets.only(top: 20.0, right: 20.0),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+         Text('Recordar mis datos', style: Theme.of(context).textTheme.subtitle1),
         Switch(
-          activeColor: azul,
-          inactiveThumbColor: naranja,
+          activeColor: naranja,
+          inactiveThumbColor: azul,
           value: brushedTeeth,
           onChanged: (checked) {
             setState(() {
@@ -136,10 +140,9 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
         ),
-        Text('Recordar mis datos', style: Theme.of(context).textTheme.subtitle1),
+       
       ],
     )
     );
   }
->>>>>>> segunda_parte
 }
