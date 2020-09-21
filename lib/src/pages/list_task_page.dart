@@ -1,26 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:front_tareasds/src/pages/view_tasks.dart';
 import 'package:front_tareasds/src/providers/list_provider.dart';
+import 'package:front_tareasds/src/utils/colors.dart';
 import 'package:front_tareasds/src/utils/constants.dart';
 import 'package:front_tareasds/src/utils/my_behavior.dart';
-
-Map<int, Color> color = {
-  50: Color.fromRGBO(136, 14, 79, .1),
-  100: Color.fromRGBO(136, 14, 79, .2),
-  200: Color.fromRGBO(136, 14, 79, .3),
-  300: Color.fromRGBO(136, 14, 79, .4),
-  400: Color.fromRGBO(136, 14, 79, .5),
-  500: Color.fromRGBO(136, 14, 79, .6),
-  600: Color.fromRGBO(136, 14, 79, .7),
-  700: Color.fromRGBO(136, 14, 79, .8),
-  800: Color.fromRGBO(136, 14, 79, .9),
-  900: Color.fromRGBO(136, 14, 79, 1),
-};
-
-MaterialColor naranja = MaterialColor(0xFFDF9623, color);
-MaterialColor azul = MaterialColor(0xFF124994, color);
-MaterialColor azulPalido = MaterialColor(0xFF567aab, color);
-MaterialColor naranjaPalido = MaterialColor(0xFFde9f3e, color);
 
 String _tituloBar = "Todos los estados";
 
@@ -34,12 +16,9 @@ class _ListTaskPageState extends State<ListTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: azul,
+        backgroundColor: ColoresPropios.azul,
         leading: Container(),
-        title: Text(
-          _tituloBar,
-          style: TextStyle(color: Colors.white),
-        ),
+        title: _filtrosBar(),
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
@@ -50,24 +29,34 @@ class _ListTaskPageState extends State<ListTaskPage> {
             ),
             onPressed: () {},
           ),
-          PopupMenuButton<String>(
-            color: Colors.white,
-            onSelected: choiceAction,
-            itemBuilder: (BuildContext context) {
-              return Constants.choices.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(
-                    choice,
-                    style: TextStyle(color: azul),
-                  ),
-                );
-              }).toList();
-            },
-          )
         ],
       ),
       body: ScrollConfiguration(behavior: MyBehavior(), child: _lista()),
+    );
+  }
+
+  Widget _filtrosBar() {
+    return MaterialButton(
+      child: Row(
+        children: [
+          Text(
+            _tituloBar,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0, left: 5.0),
+            child: Icon(
+              Icons.arrow_drop_down,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+      onPressed: () => _filtroTareas(context),
     );
   }
 
@@ -119,7 +108,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         ),
         trailing: Icon(
           Icons.keyboard_arrow_right,
-          color: azul,
+          color: ColoresPropios.azul,
         ),
         subtitle: Padding(
           padding: const EdgeInsets.only(left: 20.0),
@@ -141,19 +130,66 @@ class _ListTaskPageState extends State<ListTaskPage> {
     return tareas;
   }
 
-  void choiceAction(String choice) {
-    if (choice == Constants.Cerrado) {
-      setState(() {
-        _tituloBar = "Cerrado";
-      });
-    } else if (choice == Constants.Activo) {
-      setState(() {
-        _tituloBar = "Activo";
-      });
-    } else if (choice == Constants.Todos) {
-      setState(() {
-        _tituloBar = "Todos los estados";
-      });
-    }
+  void _filtroTareas(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MaterialButton(
+                child: Text(
+                  Constants.Activo,
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: _activo,
+              ),
+              Divider(),
+              MaterialButton(
+                child: Text(
+                  Constants.Cerrado,
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: _cerrado,
+              ),
+              Divider(),
+              MaterialButton(
+                child: Text(
+                  Constants.Todos,
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: _todos,
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _activo() {
+    setState(() {
+      _tituloBar = Constants.Activo;
+      Navigator.of(context).pop();
+    });
+  }
+
+  void _cerrado() {
+    setState(() {
+      _tituloBar = Constants.Cerrado;
+      Navigator.of(context).pop();
+    });
+  }
+
+  void _todos() {
+    setState(() {
+      _tituloBar = Constants.Todos;
+      Navigator.of(context).pop();
+    });
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/pages/home_page.dart';
 import 'package:front_tareasds/src/pages/login_page.dart';
-import 'package:front_tareasds/src/pages/view_tasks.dart';
+import 'package:front_tareasds/src/pages/view_tasks_page.dart';
 
 void main() => runApp(MyApp());
 
