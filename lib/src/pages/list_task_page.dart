@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/pages/view_tasks.dart';
 import 'package:front_tareasds/src/providers/list_provider.dart';
 import 'package:front_tareasds/src/utils/constants.dart';
+import 'package:front_tareasds/src/utils/my_behavior.dart';
 
 Map<int, Color> color = {
   50: Color.fromRGBO(136, 14, 79, .1),
@@ -66,7 +67,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
           )
         ],
       ),
-      body: _lista(),
+      body: ScrollConfiguration(behavior: MyBehavior(), child: _lista()),
     );
   }
 

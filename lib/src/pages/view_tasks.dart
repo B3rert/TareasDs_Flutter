@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
+import 'package:front_tareasds/src/utils/my_behavior.dart';
 
 class ViewTaskPage extends StatelessWidget {
   @override
@@ -16,7 +17,10 @@ class ViewTaskPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: _viewSelectTask(),
+      body: ScrollConfiguration(
+        behavior: MyBehavior(),
+        child: _viewSelectTask(),
+      ),
     );
   }
 }
