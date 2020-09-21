@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:front_tareasds/src/pages/list_task_page.dart';
+import 'package:front_tareasds/src/utils/colors.dart';
+import 'package:front_tareasds/src/utils/my_behavior.dart';
 
-bool brushedTeeth = false; //Estado para en checkbox
-bool enableFeature = false; //Estado para en checkbox
+bool brushedTeeth = false; //Estado switch
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
-Map<int, Color> color = {
-  50: Color.fromRGBO(136, 14, 79, .1),
-  100: Color.fromRGBO(136, 14, 79, .2),
-  200: Color.fromRGBO(136, 14, 79, .3),
-  300: Color.fromRGBO(136, 14, 79, .4),
-  400: Color.fromRGBO(136, 14, 79, .5),
-  500: Color.fromRGBO(136, 14, 79, .6),
-  600: Color.fromRGBO(136, 14, 79, .7),
-  700: Color.fromRGBO(136, 14, 79, .8),
-  800: Color.fromRGBO(136, 14, 79, .9),
-  900: Color.fromRGBO(136, 14, 79, 1),
-};
-
-MaterialColor naranja = MaterialColor(0xFFDF9623, color);
-MaterialColor azul = MaterialColor(0xFF124994, color);
 
 class _LoginPageState extends State<LoginPage> {
   @override
@@ -30,30 +16,33 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/background_login_orange.jpg'),
+              image: AssetImage('assets/images/fondologin.jpg'),
               fit: BoxFit.cover),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: ListView(
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/images/logo_demosoft.png',
-                      width: 250.0,
-                      //'assets/images/logo-here.png',
-                      height: 350,
-                    ),
-                    inputUsuario(),
-                    inputClave(),
-                    bottonLogin(),
-                    _crearSwitch()
-                  ],
+          body: ScrollConfiguration(
+            behavior: MyBehavior(),
+            child: ListView(
+              children: [
+                Center(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/logo_demosoft.png',
+                        width: 250.0,
+                        //'assets/images/logo-here.png',
+                        height: 350,
+                      ),
+                      inputUsuario(),
+                      inputClave(),
+                      bottonLogin(),
+                      _crearSwitch()
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
@@ -110,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
           child: new Text('Iniciar Sesión'),
           onPressed: _iniciarSesion,
           textColor: Colors.white,
-          color: azul,
+          color: ColoresPropios.azul,
           shape: StadiumBorder(),
         ),
       ),
@@ -126,24 +115,25 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _crearSwitch() {
     return Container(
-        padding: const EdgeInsets.only(top: 20.0, right: 20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Recordar mis datos',
-                style: Theme.of(context).textTheme.subtitle1),
-            Switch(
-              activeColor: azul,
-              inactiveThumbColor: azul,
-              value: brushedTeeth,
-              onChanged: (checked) {
-                setState(() {
-                  brushedTeeth = checked;
-                });
-              },
-            ),
-          ],
-        ));
+      padding: const EdgeInsets.only(top: 20.0, right: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('Recordar mis datos',
+              style: Theme.of(context).textTheme.subtitle1),
+          Switch(
+            activeColor: ColoresPropios.azul,
+            inactiveThumbColor: ColoresPropios.azul,
+            value: brushedTeeth,
+            onChanged: (checked) {
+              setState(() {
+                brushedTeeth = checked;
+              });
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

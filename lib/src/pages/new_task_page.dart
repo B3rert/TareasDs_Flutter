@@ -28,13 +28,13 @@ class _NewTaskPage extends State<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+        /* decoration: BoxDecoration(
        image: DecorationImage(
          image:AssetImage ('assets/images/background_login.jpg'),
          fit: BoxFit.cover
         ),
-      ),
-     child: Scaffold(
+      ), */
+        child: Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
         child: Column(
@@ -45,21 +45,20 @@ class _NewTaskPage extends State<NewTaskPage> {
           ],
         ),
       ),
-    )
-    );
+    ));
   }
 
   Widget inputNameTarea() {
     return Padding(
-       padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(15.0),
       child: TextField(
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           fillColor: Colors.white,
           hoverColor: Colors.black,
           filled: true,
-        //   hintText:
-        //  'Ingrese una descripciín de su requerimiento.',
+          //   hintText:
+          //  'Ingrese una descripciín de su requerimiento.',
           labelText: 'Descripción',
         ),
         onChanged: (value) {
@@ -75,15 +74,13 @@ class _NewTaskPage extends State<NewTaskPage> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
-        
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-                            fillColor: Colors.white,
-                            hoverColor: Colors.black,
-                            filled: true,
-                            hintText:
-                            'Ingrese una descripciín de su requerimiento.',
-                            labelText: 'Descripción',
+          fillColor: Colors.white,
+          hoverColor: Colors.black,
+          filled: true,
+          hintText: 'Ingrese una descripciín de su requerimiento.',
+          labelText: 'Descripción',
         ),
         onChanged: (value) {
           setState(() {
@@ -110,14 +107,16 @@ class _NewTaskPage extends State<NewTaskPage> {
     );
   }
 
-   Widget setAppBar() {
+  Widget setAppBar() {
     return Container(
-    child:  AppBar(
-      actions: [new IconButton(
-          icon: new Icon(Icons.save),
-          onPressed: _iniciarSesion,
-        ),],
-      leading: Container(),
+      child: AppBar(
+        actions: [
+          new IconButton(
+            icon: new Icon(Icons.save),
+            onPressed: _iniciarSesion,
+          ),
+        ],
+        leading: Container(),
         title: const Text('Abrir nueva tarea '),
       ),
     );
@@ -129,7 +128,4 @@ class _NewTaskPage extends State<NewTaskPage> {
       Navigator.pushNamed(context, "/homePage");
     });
   }
-
 }
-
-

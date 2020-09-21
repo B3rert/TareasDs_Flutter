@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_tareasds/src/pages/view_tasks.dart';
 import 'package:front_tareasds/src/providers/list_provider.dart';
 import 'package:front_tareasds/src/utils/constants.dart';
 
@@ -127,6 +128,10 @@ class _ListTaskPageState extends State<ListTaskPage> {
         ),
         onTap: () {
           Navigator.pushNamed(context, "/viewTask");
+          /*  Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => ViewTaskPage())); */
         },
       );
 
