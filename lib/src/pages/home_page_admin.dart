@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/pages/list_task_page.dart';
-import 'package:front_tareasds/src/pages/new_task_page.dart';
+import 'package:front_tareasds/src/pages/new_task_admin_page.dart';
 import 'package:front_tareasds/src/pages/settings_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 
-class HomePage extends StatefulWidget {
+class HomePageAdmin extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _HomePage();
+    return _HomePageAdmin();
   }
 }
 
-class _HomePage extends State<HomePage> {
+class _HomePageAdmin extends State<HomePageAdmin> {
   int indexTap = 0;
   //int admin = 1;
 
   final List<Widget> widgetsChildren = [
     ListTaskPage(),
-    NewTaskPage(),
+    NewTaskAdmin(),
     SettingsPage(),
   ];
 
