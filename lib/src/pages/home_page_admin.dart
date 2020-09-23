@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/pages/list_task_page.dart';
-import 'package:front_tareasds/src/pages/new_task_admin_page.dart';
+import 'package:front_tareasds/src/pages/new_task_page.dart';
 import 'package:front_tareasds/src/pages/settings_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 
@@ -17,7 +17,7 @@ class _HomePageAdmin extends State<HomePageAdmin> {
 
   final List<Widget> widgetsChildren = [
     ListTaskPage(),
-    NewTaskAdmin(),
+    NewTaskPage(),
     SettingsPage(),
   ];
 

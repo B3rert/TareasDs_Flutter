@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_tareasds/src/utils/my_behavior.dart';
 
 bool brushedTeeth = false; //Estado para en checkbox
 bool enableFeature = false; //Estado para en checkbox
@@ -9,22 +10,6 @@ class NewTaskAdmin extends StatefulWidget {
   _NewTaskAdmin createState() => _NewTaskAdmin();
 }
 
-Map<int, Color> color = {
-  50: Color.fromRGBO(136, 14, 79, .1),
-  100: Color.fromRGBO(136, 14, 79, .2),
-  200: Color.fromRGBO(136, 14, 79, .3),
-  300: Color.fromRGBO(136, 14, 79, .4),
-  400: Color.fromRGBO(136, 14, 79, .5),
-  500: Color.fromRGBO(136, 14, 79, .6),
-  600: Color.fromRGBO(136, 14, 79, .7),
-  700: Color.fromRGBO(136, 14, 79, .8),
-  800: Color.fromRGBO(136, 14, 79, .9),
-  900: Color.fromRGBO(136, 14, 79, 1),
-};
-
-MaterialColor naranja = MaterialColor(0xFFDF9623, color);
-MaterialColor azul = MaterialColor(0xFF124994, color);
-
 class _NewTaskAdmin extends State<NewTaskAdmin> {
   get dropdownValue => null;
 
@@ -33,49 +18,39 @@ class _NewTaskAdmin extends State<NewTaskAdmin> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/background_login.jpg'),
-              fit: BoxFit.cover),
-        ),
         child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: ListView(
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    setAppBar(),
-                    inputNameTarea(),
-                    inputDescription(),
-                    inputList1(),
-                    inputList2(),
-                    inputList3(),
-                    inputObservacion(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
+      backgroundColor: Colors.transparent,
+      appBar: setAppBar(),
+      body: ScrollConfiguration(
+        behavior: MyBehavior(),
+        child: ListView(
+          children: [
+            inputNameTarea(),
+            inputDescription(),
+            inputList1(),
+            inputList2(),
+            inputList3(),
+            inputObservacion(),
+          ],
+        ),
+      ),
+    ));
   }
 
   Widget setAppBar() {
-    return Container(
-      child: AppBar(
-        actions: [
-          new IconButton(
-            icon: new Icon(Icons.save),
-            onPressed: _iniciarSesion,
-          ),
-          IconButton(
-            icon: new Icon(Icons.search),
-            onPressed: _iniciarSesion,
-          ),
-        ],
-        leading: Container(),
-        title: const Text('Abrir nueva tarea '),
-      ),
+    return AppBar(
+      actions: [
+        new IconButton(
+          icon: new Icon(Icons.save),
+          onPressed: _iniciarSesion,
+        ),
+        IconButton(
+          icon: new Icon(Icons.search),
+          onPressed: _iniciarSesion,
+        ),
+      ],
+      leading: Container(),
+      title: const Text('Abrir nueva tarea '),
     );
   }
 

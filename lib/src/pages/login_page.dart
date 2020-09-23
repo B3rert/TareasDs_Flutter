@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:front_tareasds/src/pages/list_task_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 import 'package:front_tareasds/src/utils/my_behavior.dart';
 
@@ -108,9 +107,14 @@ class _LoginPageState extends State<LoginPage> {
 
   //iniciar Sesion
   void _iniciarSesion() {
-    setState(() {
-      Navigator.pushNamed(context, "/homePage");
-    });
+    setState(
+      () {
+        //homePageAdmin
+        (brushedTeeth)
+            ? Navigator.pushNamed(context, "/homePageAdmin")
+            : Navigator.pushNamed(context, "/homePage");
+      },
+    );
   }
 
   Widget _crearSwitch() {

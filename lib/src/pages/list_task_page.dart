@@ -118,6 +118,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         ),
         onTap: () {
           Navigator.pushNamed(context, "/viewTask");
+
           /*  Navigator.push(
               context,
               MaterialPageRoute(
