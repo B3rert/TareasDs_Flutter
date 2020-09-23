@@ -5,6 +5,10 @@ import 'package:front_tareasds/src/pages/settings_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key, @required this.userAdmin}) : super(key: key);
+
+  final bool userAdmin;
+
   @override
   State<StatefulWidget> createState() {
     return _HomePage();

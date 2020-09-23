@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:front_tareasds/src/pages/list_task_page.dart';
+import 'package:front_tareasds/src/pages/home_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 import 'package:front_tareasds/src/utils/my_behavior.dart';
 
 bool brushedTeeth = false; //Estado switch
+bool userAdmin = false;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -109,7 +110,13 @@ class _LoginPageState extends State<LoginPage> {
   //iniciar Sesion
   void _iniciarSesion() {
     setState(() {
-      Navigator.pushNamed(context, "/homePage");
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+          builder: (BuildContext context) => new HomePage(userAdmin: userAdmin),
+        ),
+      );
+      //Navigator.pushNamed(context, "/homePage");
     });
   }
 

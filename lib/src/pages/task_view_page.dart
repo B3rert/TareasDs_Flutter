@@ -23,6 +23,8 @@ String vistaComentario = "Ultimo comentario";
 int _value = 1;
 
 class TaskViewPage extends StatefulWidget {
+  TaskViewPage({Key key}) : super(key: key);
+
   @override
   _TaskViewPageState createState() => _TaskViewPageState();
 }

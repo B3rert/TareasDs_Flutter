@@ -4,6 +4,8 @@ import 'package:front_tareasds/src/utils/colors.dart';
 import 'package:front_tareasds/src/utils/constants.dart';
 import 'package:front_tareasds/src/utils/my_behavior.dart';
 
+//No sé si se ve lo que hago?
+
 String _tituloBar = "Todos los estados";
 
 class ListTaskPage extends StatefulWidget {
