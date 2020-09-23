@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: TextField(
         decoration: InputDecoration(
-          hintText: "Usuario",
+          labelText: "Usuario",
           suffixIcon: Icon(Icons.person),
         ),
         onChanged: (value) {
@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
         obscureText: true,
         //style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
-          hintText: "Contraseña",
+          labelText: "Contraseña",
           suffixIcon: Icon(Icons.lock),
         ),
         onChanged: (value) {

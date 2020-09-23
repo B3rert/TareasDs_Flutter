@@ -71,6 +71,10 @@ class _TaskViewPageState extends State<TaskViewPage> {
           mostrarTextoPeque(content[11]),
           mostrarTextoNormal(content[8]),
           archivosAdjuntos(content[13]),
+          Divider(),
+          inputAgregarComentario(),
+          adjuntarArchivos(),
+          enviarComentario(),
         ],
       ),
     );
@@ -154,6 +158,76 @@ class _TaskViewPageState extends State<TaskViewPage> {
         texto,
         style: TextStyle(
             fontFamily: "Lato", fontSize: 17.0, color: Colors.black54),
+      ),
+    );
+  }
+
+  Widget adjuntarArchivos() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Row(
+        children: [
+          RaisedButton(
+            onPressed: () {},
+            color: ColoresPropios.azul,
+            textColor: Colors.white,
+            child: Text('Examinar',
+                style: TextStyle(
+                    fontFamily: "Lato",
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Text(
+              "Ningun archivo adjunto",
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget inputAgregarComentario() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: TextField(
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          fillColor: Colors.white,
+          hoverColor: Colors.black,
+          filled: true,
+          labelText: 'Escriba una respuesta',
+        ),
+        onChanged: (value) {
+          setState(() {
+            //value tiene el valor del input
+          });
+        },
+        maxLines: 3,
+      ),
+    );
+  }
+
+  Widget enviarComentario() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: RaisedButton(
+          onPressed: () {},
+          color: ColoresPropios.azul,
+          textColor: Colors.white,
+          child: new Text('Enviar Comentario',
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w600)),
+        ),
       ),
     );
   }

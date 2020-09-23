@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   int indexTap = 0;
+  //int admin = 1;
 
   final List<Widget> widgetsChildren = [
     ListTaskPage(),
@@ -47,6 +48,7 @@ class _HomePage extends State<HomePage> {
               ),
               title: Text(
                 "Tickets",
+                style: TextStyle(fontFamily: "Lato"),
               ),
             ),
             BottomNavigationBarItem(

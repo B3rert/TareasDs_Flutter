@@ -21,6 +21,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         backgroundColor: ColoresPropios.azul,
         leading: Container(),
         title: _filtrosBar(),
+        centerTitle: true,
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
@@ -120,6 +121,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         ),
         onTap: () {
           Navigator.pushNamed(context, "/viewTask");
+
           /*  Navigator.push(
               context,
               MaterialPageRoute(
