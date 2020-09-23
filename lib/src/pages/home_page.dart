@@ -44,6 +44,7 @@ class _HomePage extends State<HomePage> {
               ),
               title: Text(
                 "Tickets",
+                style: TextStyle(fontFamily: "Lato"),
               ),
             ),
             BottomNavigationBarItem(

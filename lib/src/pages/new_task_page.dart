@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:front_tareasds/src/utils/colors.dart';
+import 'package:front_tareasds/src/widgets/description_widget.dart';
 // import 'package:front_tareasds/src/utils/colors.dart';
 
 bool brushedTeeth = false; //Estado para en checkbox
@@ -23,14 +25,16 @@ class _NewTaskPage extends State<NewTaskPage> {
       ), */
         child: Scaffold(
       backgroundColor: Colors.transparent,
-      body: Center(
-        child: Column(
-          children: [
-            setAppBar(),
-            inputNameTarea(),
-            inputDescription(),
-          ],
-        ),
+      body: ListView(
+        children: [
+          setAppBar(),
+          DescriptionWidget('Correo Electronico: Probando@hoover.gt.com'),
+          DescriptionWidget("Nombre cliente: Usuario Prueba"),
+          Divider(),
+          inputNameTarea(),
+          inputDescription(),
+          adjuntarArchivos(),
+        ],
       ),
     ));
   }
@@ -46,7 +50,7 @@ class _NewTaskPage extends State<NewTaskPage> {
           filled: true,
           //   hintText:
           //  'Ingrese una descripciín de su requerimiento.',
-          labelText: 'Descripción',
+          labelText: 'Titulo',
         ),
         onChanged: (value) {
           setState(() {
@@ -66,8 +70,7 @@ class _NewTaskPage extends State<NewTaskPage> {
           fillColor: Colors.white,
           hoverColor: Colors.black,
           filled: true,
-          hintText: 'Ingrese una descripciín de su requerimiento.',
-          labelText: 'Descripción',
+          labelText: 'Detalle del incidente',
         ),
         onChanged: (value) {
           setState(() {
@@ -89,7 +92,8 @@ class _NewTaskPage extends State<NewTaskPage> {
           ),
         ],
         leading: Container(),
-        title: const Text('Abrir nueva tarea '),
+        title: const Text("D'MOSOFT, S.A."),
+        centerTitle: true,
       ),
     );
   }
@@ -100,6 +104,34 @@ class _NewTaskPage extends State<NewTaskPage> {
       Navigator.pushNamed(context, "/homePage");
     });
   }
-}
 
-class FilePickerResult {}
+  Widget adjuntarArchivos() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Row(
+        children: [
+          RaisedButton(
+            onPressed: () {},
+            color: ColoresPropios.azul,
+            textColor: Colors.white,
+            child: Text('Examinar',
+                style: TextStyle(
+                    fontFamily: "Lato",
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Text(
+              "Ningun archivo adjunto",
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -17,6 +17,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "D'MOSOFT, S.A.",
           style: TextStyle(fontFamily: "Lato"),

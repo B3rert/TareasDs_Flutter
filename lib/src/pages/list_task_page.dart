@@ -19,6 +19,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
         backgroundColor: ColoresPropios.azul,
         leading: Container(),
         title: _filtrosBar(),
+        centerTitle: true,
         iconTheme: IconThemeData(
           color: Colors.white,
         ),

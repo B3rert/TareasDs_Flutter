@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/pages/home_page.dart';
-import 'package:front_tareasds/src/pages/home_page_admin.dart';
 import 'package:front_tareasds/src/pages/login_page.dart';
 import 'package:front_tareasds/src/pages/task_view_page.dart';
-import 'package:front_tareasds/src/pages/view_task_admin_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 
 void main() => runApp(MyApp());
@@ -21,8 +19,6 @@ class MyApp extends StatelessWidget {
         "/": (context) => LoginPage(), //Ruta a login_page
         "/homePage": (context) => HomePage(),
         "/viewTask": (context) => TaskViewPage(),
-        "/homePageAdmin": (context) => HomePageAdmin(),
-        "/viewTakAdmin": (context) => ViewTaskPAgeAdmin(),
       },
       initialRoute: '/',
     );
