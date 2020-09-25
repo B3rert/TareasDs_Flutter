@@ -89,12 +89,14 @@ class _ListTaskPageState extends State<ListTaskPage> {
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   element['Titulo'],
+                  style: TextStyle(fontFamily: "Lato"),
                 ),
               ),
               Row(
                 children: [
                   Text(
                     element['ID_tarea'],
+                    style: TextStyle(fontFamily: "Lato"),
                   ),
                   Text(
                     " - ",

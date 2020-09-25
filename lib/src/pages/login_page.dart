@@ -55,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       child: TextField(
         decoration: InputDecoration(
           labelText: "Usuario",
+          focusColor: Colors.red,
           suffixIcon: Icon(Icons.person),
         ),
         onChanged: (value) {

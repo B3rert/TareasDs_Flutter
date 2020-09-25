@@ -17,6 +17,18 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              iconSize: 100.0,
+              icon: new Image.asset(
+                'assets/images/icondmosoft.png',
+              ),
+              onPressed: () {},
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         centerTitle: true,
         title: Text(
           "D'MOSOFT, S.A.",

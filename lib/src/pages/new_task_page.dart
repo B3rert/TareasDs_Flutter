@@ -67,8 +67,6 @@ class _NewTaskPage extends State<NewTaskPage> {
       child: TextField(
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          fillColor: Colors.white,
-          hoverColor: Colors.black,
           filled: true,
           labelText: 'Detalle del incidente',
         ),
@@ -85,13 +83,25 @@ class _NewTaskPage extends State<NewTaskPage> {
   Widget setAppBar() {
     return Container(
       child: AppBar(
+        backgroundColor: ColoresPropios.azul,
         actions: [
           new IconButton(
             icon: new Icon(Icons.send),
             onPressed: _iniciarSesion,
           ),
         ],
-        leading: Container(),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              iconSize: 100.0,
+              icon: new Image.asset(
+                'assets/images/icondmosoft.png',
+              ),
+              onPressed: () {},
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         title: const Text("D'MOSOFT, S.A."),
         centerTitle: true,
       ),
