@@ -57,13 +57,17 @@ class _HomePage extends State<HomePage> {
               ),
               title: Text(
                 "Nuevo Ticket",
+                style: TextStyle(fontFamily: "Lato"),
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.phone_forwarded,
               ),
-              title: Text("Soporte"),
+              title: Text(
+                "Soporte",
+                style: TextStyle(fontFamily: "Lato"),
+              ),
             )
           ],
         ),

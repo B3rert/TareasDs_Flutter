@@ -20,8 +20,12 @@ class _ListTaskPageState extends State<ListTaskPage> {
       appBar: AppBar(
         backgroundColor: ColoresPropios.azul,
         leading: Container(),
-        title: _filtrosBar(),
-        centerTitle: true,
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(top: 40.0),
+          child: _filtrosBar(),
+        ),
+        /* title: _filtrosBar(),
+        centerTitle: true, */
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
@@ -39,27 +43,30 @@ class _ListTaskPageState extends State<ListTaskPage> {
   }
 
   Widget _filtrosBar() {
-    return MaterialButton(
-      child: Row(
-        children: [
-          Text(
-            _tituloBar,
-            style: TextStyle(
+    return Padding(
+      padding: const EdgeInsets.only(right: 150.0, left: 20.0),
+      child: MaterialButton(
+        child: Row(
+          children: [
+            Text(
+              _tituloBar,
+              style: TextStyle(
                 color: Colors.white,
-                fontSize: 20.0,
+                fontSize: 20.5,
                 fontFamily: "Lato",
-                fontWeight: FontWeight.bold),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0, left: 5.0),
-            child: Icon(
-              Icons.arrow_drop_down,
-              color: Colors.white,
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, left: 5.0),
+              child: Icon(
+                Icons.arrow_drop_down,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        onPressed: () => _filtroTareas(context),
       ),
-      onPressed: () => _filtroTareas(context),
     );
   }
 
@@ -105,6 +112,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
                   ),
                   Text(
                     element['Estado'],
+                    style: TextStyle(fontFamily: "Lato"),
                   ),
                 ],
               ),
@@ -119,6 +127,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
             element['Fecha'],
+            style: TextStyle(fontFamily: "Lato"),
           ),
         ),
         onTap: () {
@@ -151,7 +160,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
               MaterialButton(
                 child: Text(
                   Constants.Activo,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontFamily: "Lato"),
                 ),
                 onPressed: _activo,
               ),
@@ -159,7 +168,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
               MaterialButton(
                 child: Text(
                   Constants.Cerrado,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontFamily: "Lato"),
                 ),
                 onPressed: _cerrado,
               ),
@@ -167,7 +176,7 @@ class _ListTaskPageState extends State<ListTaskPage> {
               MaterialButton(
                 child: Text(
                   Constants.Todos,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontFamily: "Lato"),
                 ),
                 onPressed: _todos,
               )

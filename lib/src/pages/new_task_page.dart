@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
+import 'package:front_tareasds/src/utils/my_behavior.dart';
 import 'package:front_tareasds/src/widgets/description_widget.dart';
 // import 'package:front_tareasds/src/utils/colors.dart';
 
@@ -16,33 +17,72 @@ class _NewTaskPage extends State<NewTaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        /* decoration: BoxDecoration(
-       image: DecorationImage(
-         image:AssetImage ('assets/images/background_login.jpg'),
-         fit: BoxFit.cover
-        ),
-      ), */
-        child: Scaffold(
-      backgroundColor: Colors.transparent,
-      body: ListView(
-        children: [
-          setAppBar(),
-          DescriptionWidget('Correo Electronico: Probando@hoover.gt.com'),
-          DescriptionWidget("Nombre cliente: Usuario Prueba"),
-          Divider(),
-          inputNameTarea(),
-          inputDescription(),
-          adjuntarArchivos(),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Container(),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.send),
+            onPressed: () {},
+          ),
         ],
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(
+            top: 55.0,
+            left: 20.0,
+          ),
+          child: Text(
+            "Abrir un nuevo Ticket",
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: "Lato",
+              fontSize: 21.5,
+            ),
+          ),
+        ),
       ),
-    ));
+      body: ScrollConfiguration(
+        behavior: MyBehavior(),
+        child: ListView(
+          children: [
+            DescriptionWidget('Correo Electronico: Probando@hoover.gt.com'),
+            DescriptionWidget("Nombre cliente: Usuario Prueba"),
+            Divider(),
+            inputNameTarea(),
+            inputDescription(),
+            adjuntarArchivos(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget enviarTarea() {
+    return MaterialButton(
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Text(
+                "Crear Ticket",
+                style: TextStyle(
+                    fontFamily: "Lato", color: Colors.white, fontSize: 20.5),
+              ),
+            ),
+            Icon(
+              Icons.send,
+              color: Colors.white,
+            ),
+          ],
+        ),
+        onPressed: () {});
   }
 
   Widget inputNameTarea() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
+        textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           fillColor: Colors.white,
@@ -50,7 +90,7 @@ class _NewTaskPage extends State<NewTaskPage> {
           filled: true,
           //   hintText:
           //  'Ingrese una descripciín de su requerimiento.',
-          labelText: 'Titulo',
+          labelText: 'Titulo *',
         ),
         onChanged: (value) {
           setState(() {
@@ -65,80 +105,46 @@ class _NewTaskPage extends State<NewTaskPage> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
+        textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          filled: true,
-          labelText: 'Detalle del incidente',
+          labelText: 'Detalle del incidente *',
         ),
         onChanged: (value) {
           setState(() {
             //value tiene el valor del input
           });
         },
-        maxLines: 10,
+        maxLines: 5,
       ),
     );
-  }
-
-  Widget setAppBar() {
-    return Container(
-      child: AppBar(
-        backgroundColor: ColoresPropios.azul,
-        actions: [
-          new IconButton(
-            icon: new Icon(Icons.send),
-            onPressed: _iniciarSesion,
-          ),
-        ],
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              iconSize: 100.0,
-              icon: new Image.asset(
-                'assets/images/icondmosoft.png',
-              ),
-              onPressed: () {},
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
-        title: const Text("D'MOSOFT, S.A."),
-        centerTitle: true,
-      ),
-    );
-  }
-
-  //iniciar Sesion
-  void _iniciarSesion() {
-    setState(() {
-      Navigator.pushNamed(context, "/homePage");
-    });
   }
 
   Widget adjuntarArchivos() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Text(
+              "Ningun archivo adjunto",
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w100),
+            ),
+          ),
           RaisedButton(
             onPressed: () {},
             color: ColoresPropios.azul,
             textColor: Colors.white,
             child: Text('Examinar',
                 style: TextStyle(
-                    fontFamily: "Lato",
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600)),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Text(
-              "Ningun archivo adjunto",
-              style: TextStyle(
                   fontFamily: "Lato",
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600),
-            ),
+                  fontSize: 17.0,
+                )),
           ),
         ],
       ),

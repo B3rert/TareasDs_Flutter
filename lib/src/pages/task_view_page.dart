@@ -39,10 +39,10 @@ class _TaskViewPageState extends State<TaskViewPage> {
         ),
         backgroundColor: ColoresPropios.azul,
         title: Text(
-          "Tareas",
+          "Resumen del ticket",
           style: TextStyle(color: Colors.white),
         ),
-        centerTitle: true,
+        centerTitle: false,
       ),
       body: ScrollConfiguration(
         behavior: MyBehavior(),
@@ -81,25 +81,34 @@ class _TaskViewPageState extends State<TaskViewPage> {
   }
 
   Widget mostrarComentarios() {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: DropdownButton(
-          value: _value,
-          items: [
-            DropdownMenuItem(
-              child: Text("Último comentario"),
-              value: 1,
-            ),
-            DropdownMenuItem(
-              child: Text("Todos los cometarios"),
-              value: 2,
-            ),
-          ],
-          onChanged: (value) {
-            setState(() {
-              _value = value;
-            });
-          }),
+    return Padding(
+      padding: const EdgeInsets.only(right: 20.0),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: DropdownButton(
+            value: _value,
+            items: [
+              DropdownMenuItem(
+                child: Text(
+                  "Último comentario",
+                  style: TextStyle(fontFamily: "Lato"),
+                ),
+                value: 1,
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  "Todos los cometarios",
+                  style: TextStyle(fontFamily: "Lato"),
+                ),
+                value: 2,
+              ),
+            ],
+            onChanged: (value) {
+              setState(() {
+                _value = value;
+              });
+            }),
+      ),
     );
   }
 
@@ -164,28 +173,29 @@ class _TaskViewPageState extends State<TaskViewPage> {
 
   Widget adjuntarArchivos() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0),
+      padding: const EdgeInsets.only(right: 20.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Text(
+              "Ningun archivo adjunto",
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w100),
+            ),
+          ),
           RaisedButton(
             onPressed: () {},
             color: ColoresPropios.azul,
             textColor: Colors.white,
             child: Text('Examinar',
                 style: TextStyle(
-                    fontFamily: "Lato",
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600)),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Text(
-              "Ningun archivo adjunto",
-              style: TextStyle(
                   fontFamily: "Lato",
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600),
-            ),
+                  fontSize: 17.0,
+                )),
           ),
         ],
       ),
@@ -196,6 +206,7 @@ class _TaskViewPageState extends State<TaskViewPage> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
+        textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           fillColor: Colors.white,
@@ -215,18 +226,33 @@ class _TaskViewPageState extends State<TaskViewPage> {
 
   Widget enviarComentario() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(
+          bottom: 20.0, right: 20.0, left: 180.0, top: 7.0),
       child: Align(
         alignment: Alignment.bottomRight,
         child: RaisedButton(
           onPressed: () {},
           color: ColoresPropios.azul,
           textColor: Colors.white,
-          child: new Text('Enviar Comentario',
-              style: TextStyle(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Enviar comentario',
+                style: TextStyle(
                   fontFamily: "Lato",
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600)),
+                  fontSize: 17.0,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Icon(
+                  Icons.send,
+                  size: 19.0,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

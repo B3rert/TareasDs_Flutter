@@ -98,7 +98,10 @@ class _LoginPageState extends State<LoginPage> {
         height: 50.0,
         width: 365.0,
         child: new RaisedButton(
-          child: new Text('Iniciar Sesión'),
+          child: new Text(
+            'Iniciar sesión',
+            style: TextStyle(fontFamily: "Lato", fontSize: 18),
+          ),
           onPressed: _iniciarSesion,
           textColor: Colors.white,
           color: ColoresPropios.azul,

@@ -17,22 +17,17 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              iconSize: 100.0,
-              icon: new Image.asset(
-                'assets/images/icondmosoft.png',
-              ),
-              onPressed: () {},
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
-        centerTitle: true,
-        title: Text(
-          "D'MOSOFT, S.A.",
-          style: TextStyle(fontFamily: "Lato"),
+        leading: Container(),
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(
+            top: 55.0,
+            left: 20.0,
+          ),
+          child: Text(
+            "Centro de Soporte",
+            style: TextStyle(
+                fontFamily: "Lato", color: Colors.white, fontSize: 20.5),
+          ),
         ),
       ),
       body: _info(),
