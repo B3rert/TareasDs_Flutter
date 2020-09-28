@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_tareasds/src/pages/file_picker_page.dart';
 import 'package:front_tareasds/src/pages/login_page.dart';
 import 'package:front_tareasds/src/pages/task_view_page.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TareasDS',
       routes: {
-        "/": (context) => LoginPage(), //Ruta a login_page
+        "/": (context) => FilePickerPage(), //LoginPage(), //Ruta a login_page
         //"/homePage": (context) => HomePage(),
         "/viewTask": (context) => TaskViewPage(),
       },
