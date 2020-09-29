@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 import 'package:front_tareasds/src/utils/my_behavior.dart';
+import 'package:front_tareasds/src/widgets/subtitulo_negrita_widget.dart';
+import 'package:front_tareasds/src/widgets/texto_normal_widget.dart';
+import 'package:front_tareasds/src/widgets/titulos_negrita_widget.dart';
 
 final List<String> content = [
   "Ticket: #4798897",
@@ -56,20 +59,20 @@ class _TaskViewPageState extends State<TaskViewPage> {
       padding: const EdgeInsets.only(top: 20.0),
       child: ListView(
         children: [
-          mostrarTexto(content[0]),
-          mostrarTexto(content[1]),
+          TituloNegritaWidget(content[0]),
+          TituloNegritaWidget(content[1]),
           Divider(),
-          mostrarTextoNormal(content[2]),
-          mostrarTextoNormal(content[5]),
-          mostrarTextoNormal(content[3]),
-          mostrarTextoNormal(content[6]),
-          mostrarTextoNormal(content[7]),
-          mostrarTextoNormal(content[4]),
+          TextoNormalWidget(content[2]),
+          TextoNormalWidget(content[5]),
+          TextoNormalWidget(content[3]),
+          TextoNormalWidget(content[6]),
+          TextoNormalWidget(content[7]),
+          TextoNormalWidget(content[4]),
           Divider(),
           mostrarComentarios(),
-          mostrarTextoPeque(content[12]),
-          mostrarTextoPeque(content[11]),
-          mostrarTextoNormal(content[8]),
+          SubtituloNegritaWidget(content[12]),
+          SubtituloNegritaWidget(content[11]),
+          TextoNormalWidget(content[8]),
           archivosAdjuntos(content[13]),
           Divider(),
           inputAgregarComentario(),
@@ -127,40 +130,6 @@ class _TaskViewPageState extends State<TaskViewPage> {
     );
   }
 
-  Widget mostrarTextoNormal(String texto) {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, top: 5.0, right: 20.0),
-      child: Text(
-        texto,
-        style: TextStyle(
-            fontFamily: "Lato", fontSize: 18.0, fontWeight: FontWeight.w500),
-        textAlign: TextAlign.justify,
-      ),
-    );
-  }
-
-  Widget mostrarTexto(String texto) {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, top: 5.0),
-      child: Text(
-        texto,
-        style: TextStyle(
-            fontFamily: "Lato", fontSize: 20.0, fontWeight: FontWeight.w900),
-      ),
-    );
-  }
-
-  Widget mostrarTextoPeque(String texto) {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, top: 5.0),
-      child: Text(
-        texto,
-        style: TextStyle(
-            fontFamily: "Lato", fontSize: 17.0, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-
   Widget mostrarTextoPalido(String texto) {
     return Container(
       margin: EdgeInsets.only(left: 20.0, top: 5.0),
@@ -192,11 +161,13 @@ class _TaskViewPageState extends State<TaskViewPage> {
             onPressed: () => Navigator.pushNamed(context, "/selectFilePichker"),
             color: ColoresPropios.azul,
             textColor: Colors.white,
-            child: Text('Examinar',
-                style: TextStyle(
-                  fontFamily: "Lato",
-                  fontSize: 17.0,
-                )),
+            child: Text(
+              'Examinar',
+              style: TextStyle(
+                fontFamily: "Lato",
+                fontSize: 17.0,
+              ),
+            ),
           ),
         ],
       ),
