@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
               style: Theme.of(context).textTheme.subtitle1),
           Switch(
             activeColor: ColoresPropios.azul,
-            inactiveThumbColor: ColoresPropios.azul,
+            //inactiveThumbColor: ColoresPropios.azul,
             value: brushedTeeth,
             onChanged: (checked) {
               setState(() {

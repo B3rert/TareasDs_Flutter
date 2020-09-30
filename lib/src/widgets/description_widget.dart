@@ -12,10 +12,12 @@ class DescriptionWidget extends StatelessWidget {
       child: Text(
         descriptionPlace,
         style: TextStyle(
-            fontFamily: "Lato",
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF56575a)),
+          fontFamily: "Lato",
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF56575a),
+        ),
+        textAlign: TextAlign.justify,
       ),
     );
 

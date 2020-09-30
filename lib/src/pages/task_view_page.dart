@@ -1,6 +1,11 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:front_tareasds/src/utils/colors.dart';
 import 'package:front_tareasds/src/utils/my_behavior.dart';
+import 'package:front_tareasds/src/widgets/subtitulo_negrita_widget.dart';
+import 'package:front_tareasds/src/widgets/texto_normal_widget.dart';
+import 'package:front_tareasds/src/widgets/titulos_negrita_widget.dart';
 
 final List<String> content = [
   "Ticket: #4798897",
@@ -30,9 +35,28 @@ class TaskViewPage extends StatefulWidget {
 }
 
 class _TaskViewPageState extends State<TaskViewPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _fileName;
+  List<PlatformFile> _paths;
+  String _directoryPath;
+  String _extension;
+  bool _loadingPath = false;
+  bool _multiPick = true;
+  FileType _pickingType = FileType.any;
+  TextEditingController _controller = TextEditingController();
+  bool _verArchivosadjuntos = false;
+  bool _mostrarArchivosAdjuntos = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() => _extension = _controller.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white,
@@ -51,29 +75,50 @@ class _TaskViewPageState extends State<TaskViewPage> {
     );
   }
 
+  void _mostFilesAdjunt() {
+    setState(() {
+      (_mostrarArchivosAdjuntos)
+          ? _mostrarArchivosAdjuntos = false
+          : _mostrarArchivosAdjuntos = true;
+    });
+  }
+
+  Widget _viewFilesAjunts() {
+    return MaterialButton(
+      onPressed: _mostFilesAdjunt,
+      child: Row(
+        children: [
+          Text("Ver archivos adjuntos"),
+          Icon(Icons.arrow_drop_down),
+        ],
+      ),
+    );
+  }
+
   Widget _viewSelectTask() {
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: ListView(
         children: [
-          mostrarTexto(content[0]),
-          mostrarTexto(content[1]),
+          TituloNegritaWidget(content[0]),
+          TituloNegritaWidget(content[1]),
           Divider(),
-          mostrarTextoNormal(content[2]),
-          mostrarTextoNormal(content[5]),
-          mostrarTextoNormal(content[3]),
-          mostrarTextoNormal(content[6]),
-          mostrarTextoNormal(content[7]),
-          mostrarTextoNormal(content[4]),
+          TextoNormalWidget(content[2]),
+          TextoNormalWidget(content[5]),
+          TextoNormalWidget(content[3]),
+          TextoNormalWidget(content[6]),
+          TextoNormalWidget(content[7]),
+          TextoNormalWidget(content[4]),
           Divider(),
           mostrarComentarios(),
-          mostrarTextoPeque(content[12]),
-          mostrarTextoPeque(content[11]),
-          mostrarTextoNormal(content[8]),
+          SubtituloNegritaWidget(content[12]),
+          SubtituloNegritaWidget(content[11]),
+          TextoNormalWidget(content[8]),
           archivosAdjuntos(content[13]),
           Divider(),
           inputAgregarComentario(),
           adjuntarArchivos(),
+          (_mostrarArchivosAdjuntos) ? archivosSeleccionados() : Divider(),
           enviarComentario(),
         ],
       ),
@@ -127,39 +172,6 @@ class _TaskViewPageState extends State<TaskViewPage> {
     );
   }
 
-  Widget mostrarTextoNormal(String texto) {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, top: 5.0),
-      child: Text(
-        texto,
-        style: TextStyle(
-            fontFamily: "Lato", fontSize: 18.0, fontWeight: FontWeight.w500),
-      ),
-    );
-  }
-
-  Widget mostrarTexto(String texto) {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, top: 5.0),
-      child: Text(
-        texto,
-        style: TextStyle(
-            fontFamily: "Lato", fontSize: 20.0, fontWeight: FontWeight.w900),
-      ),
-    );
-  }
-
-  Widget mostrarTextoPeque(String texto) {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, top: 5.0),
-      child: Text(
-        texto,
-        style: TextStyle(
-            fontFamily: "Lato", fontSize: 17.0, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-
   Widget mostrarTextoPalido(String texto) {
     return Container(
       margin: EdgeInsets.only(left: 20.0, top: 5.0),
@@ -179,26 +191,64 @@ class _TaskViewPageState extends State<TaskViewPage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
-            child: Text(
-              "Ningun archivo adjunto",
-              style: TextStyle(
-                  fontFamily: "Lato",
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w100),
-            ),
+            child: (_verArchivosadjuntos)
+                ? _viewFilesAjunts()
+                : Text(
+                    "Ningun archivo adjunto",
+                    style: TextStyle(
+                        fontFamily: "Lato",
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w100),
+                  ),
           ),
-          RaisedButton(
-            onPressed: () {},
-            color: ColoresPropios.azul,
-            textColor: Colors.white,
-            child: Text('Examinar',
-                style: TextStyle(
-                  fontFamily: "Lato",
-                  fontSize: 17.0,
-                )),
-          ),
+          (!_verArchivosadjuntos)
+              ? RaisedButton(
+                  onPressed: _openFileExplorer,
+                  color: ColoresPropios.azul,
+                  textColor: Colors.white,
+                  child: Text(
+                    'Examinar',
+                    style: TextStyle(
+                      fontFamily: "Lato",
+                      fontSize: 17.0,
+                    ),
+                  ),
+                )
+              : RaisedButton(
+                  onPressed: _clearCachedFiles,
+                  color: ColoresPropios.azul,
+                  textColor: Colors.white,
+                  child: Text(
+                    'Eliminar Archivos',
+                    style: TextStyle(
+                      fontFamily: "Lato",
+                      fontSize: 17.0,
+                    ),
+                  ),
+                ),
         ],
       ),
+    );
+  }
+
+  void _clearCachedFiles() {
+    setState(() {
+      _verArchivosadjuntos = false;
+      _mostrarArchivosAdjuntos = false;
+    });
+    FilePicker.platform.clearTemporaryFiles().then(
+      (result) {
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            backgroundColor: result ? Colors.green : Colors.red,
+            content: Text(
+              (result
+                  ? 'Archivos seleccionados eliminados correctamente'
+                  : 'Fallo al eliminar los archivos seleccionados'),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -255,6 +305,79 @@ class _TaskViewPageState extends State<TaskViewPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _openFileExplorer() async {
+    //setState(() => _loadingPath = true);
+    try {
+      _directoryPath = null;
+      _paths = (await FilePicker.platform.pickFiles(
+        type: _pickingType,
+        allowMultiple: _multiPick,
+        allowedExtensions: (_extension?.isNotEmpty ?? false)
+            ? _extension?.replaceAll(' ', '')?.split(',')
+            : null,
+      ))
+          ?.files;
+    } on PlatformException catch (e) {
+      print("Unsupported operation" + e.toString());
+    } catch (ex) {
+      print(ex);
+    }
+    if (!mounted) return;
+    setState(() {
+      //_loadingPath = false;
+      _fileName = _paths != null ? _paths.map((e) => e.name).toString() : '...';
+      _verArchivosadjuntos = true;
+    });
+  }
+
+  Widget archivosSeleccionados() {
+    return Builder(
+      builder: (BuildContext context) => _loadingPath
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: const CircularProgressIndicator(),
+            )
+          : _directoryPath != null
+              ? ListTile(
+                  title: Text('Ubicacion de la carpeta'),
+                  subtitle: Text(_directoryPath),
+                )
+              : _paths != null
+                  ? Container(
+                      padding: const EdgeInsets.only(bottom: 30.0),
+                      height: MediaQuery.of(context).size.height * 0.50,
+                      child: Scrollbar(
+                        child: ListView.separated(
+                          itemCount: _paths != null && _paths.isNotEmpty
+                              ? _paths.length
+                              : 1,
+                          itemBuilder: (BuildContext context, int index) {
+                            final bool isMultiPath =
+                                _paths != null && _paths.isNotEmpty;
+                            final String name = (isMultiPath
+                                ? _paths.map((e) => e.name).toList()[index]
+                                : _fileName ?? '...');
+                            final path = _paths
+                                .map((e) => e.path)
+                                .toList()[index]
+                                .toString();
+
+                            return ListTile(
+                              title: Text(
+                                name,
+                              ),
+                              subtitle: Text(path),
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const Divider(),
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
     );
   }
 }
